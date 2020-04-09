@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chap61.mapper.UsersMapper">
+	<!-- 按照指定字段模糊查询哟用户信息  -->
+	<select id="listUsersByCondition" parameterType="java.util.Properties"  resultType="com.chap61.domain.Users">
+		select * from users where ${name}  like  concat('%',#{value},'%')
+	</select>
+	
+	<!-- 配置映射的SQL语句 -->
+	<select id="doLogin" parameterType="com.chap61.domain.Users" resultType="Integer" >
+		select count(*) from Users where loginId=#{loginId} and loginPwd=#{loginPwd}
+	<lect>
+	<!-- 用户注册 -->
+	<insert id="addUser" parameterType="com.chap61.domain.Users" >
+		insert into users (loginId,loginPwd,name,address,phone,mail,userRoleId,userStateId)values(#{loginId},#{loginPwd},#{name},#{address},#{phone},#{mail},1,1)
+	</insert>
+	
+	<select id="findUser"  parameterType="Integer" resultType="com.chap61.domain.Users" >
+		select * from Users where id=${value}
+	<lect>
+</mapper>
